@@ -28,12 +28,12 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate, currentView }) => {
   return (
     <>
       <nav className="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-[100] mix-blend-difference text-white">
-        <button onClick={() => handleNav('home')} className="font-display font-bold text-lg md:text-xl tracking-tighter">
+        <button onClick={() => handleNav('home')} className="font-brand font-bold text-lg md:text-xl tracking-tighter">
           펄즈데뷰티
         </button>
         
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-12 text-[10px] font-medium tracking-[0.3em] uppercase font-display">
+        {/* Desktop Links - Using font-sans for clean Inter look */}
+        <div className="hidden md:flex gap-12 text-[10px] font-semibold tracking-[0.3em] uppercase font-sans">
           {navLinks.map((link) => (
             <button 
               key={link.name} 
@@ -75,14 +75,14 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate, currentView }) => {
               }`}
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <span className="text-nude text-[10px] block mb-2 tracking-[0.5em] text-center uppercase font-bold font-display">0{idx + 1}</span>
+              <span className="text-nude text-[10px] block mb-2 tracking-[0.5em] text-center uppercase font-bold font-sans">0{idx + 1}</span>
               {link.name}
             </button>
           ))}
           
           <div className="pt-12 border-t border-white/10 w-full flex justify-center gap-8">
-            <a href="https://www.instagram.com/pearlz_de_beauty/" target="_blank" rel="noopener noreferrer" className="text-white/40 text-[10px] tracking-widest uppercase font-bold font-display">Instagram</a>
-            <a href="https://pf.kakao.com/_xlxmJJG" target="_blank" rel="noopener noreferrer" className="text-white/40 text-[10px] tracking-widest uppercase font-bold font-display">Kakao</a>
+            <a href="https://www.instagram.com/pearlz_de_beauty/" target="_blank" rel="noopener noreferrer" className="text-white/40 text-[10px] tracking-widest uppercase font-bold font-sans">Instagram</a>
+            <a href="https://pf.kakao.com/_xlxmJJG" target="_blank" rel="noopener noreferrer" className="text-white/40 text-[10px] tracking-widest uppercase font-bold font-sans">Kakao</a>
           </div>
         </div>
       </div>

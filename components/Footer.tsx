@@ -6,22 +6,16 @@ const Footer: React.FC = () => {
   return (
     <footer id="contact" className="relative h-[60vh] flex flex-col items-center justify-center bg-dark text-white overflow-hidden">
       <div className="relative z-10 text-center px-4 w-full flex flex-col items-center">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-10 font-bold font-display">Ready to shine?</p>
+        <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-10 font-bold font-sans">Ready to shine?</p>
         
-        {/* Brand Logo Image - Corrected path based on file explorer */}
-        <div className="mb-12">
-          <img 
-            src="public/images/logo-white.png" 
-            alt="Pearlz De Beauty Logo" 
-            className="h-10 md:h-14 w-auto object-contain"
-            onError={(e) => {
-              // 이미지 로드 실패 시 콘솔에 에러 표시 (디버깅용)
-              console.error("Logo failed to load at path: public/images/logo-white.png");
-            }}
-          />
+        {/* Text-based Logo instead of Image */}
+        <div className="mb-12 flex justify-center items-center">
+          <div className="font-brand text-3xl md:text-5xl font-bold tracking-tighter uppercase">
+            Pearlz <span className="text-nude">De Beauty</span>
+          </div>
         </div>
         
-        <div className="flex flex-wrap justify-center gap-12 mt-4 text-[10px] uppercase tracking-[0.2em] font-bold font-display">
+        <div className="flex flex-wrap justify-center gap-12 mt-4 text-[10px] uppercase tracking-[0.2em] font-bold font-sans">
           <a href="https://www.instagram.com/pearlz_de_beauty/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-nude transition-colors">
             <iconify-icon icon="solar:camera-linear" width="18"></iconify-icon> Instagram
           </a>
@@ -30,7 +24,7 @@ const Footer: React.FC = () => {
           </a>
         </div>
 
-        <div className="mt-20 text-[8px] tracking-[0.5em] text-white/10 uppercase font-bold font-display">
+        <div className="mt-20 text-[8px] tracking-[0.5em] text-white/10 uppercase font-bold font-sans">
           © 2025 Pearlz De Beauty. ALL RIGHTS RESERVED.
         </div>
       </div>

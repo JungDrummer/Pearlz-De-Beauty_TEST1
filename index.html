@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@100..900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <!-- Icons -->
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <!-- Tailwind -->
@@ -18,13 +18,14 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Noto Sans KR', 'sans-serif'],
-                        display: ['Syncopate', 'sans-serif'],
+                        sans: ['Inter', 'Noto Sans KR', 'sans-serif'],
+                        brand: ['Syncopate', 'sans-serif'],
                     },
                     colors: {
                         cream: '#FCFBF9',
                         dark: '#1A1A1A',
                         nude: '#D4C4B5',
+                        moss: '#374336',
                     }
                 }
             }
@@ -45,7 +46,7 @@
             overflow-x: hidden;
             word-break: keep-all;
             margin: 0;
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
         }
         .noise-overlay {
             position: fixed;
@@ -76,7 +77,6 @@
         }
     </style>
     <script>
-        // 배포 환경에서 process.env 참조 에러 방지를 위한 Shim
         window.process = window.process || { env: { API_KEY: "" } };
     </script>
 <script type="importmap">

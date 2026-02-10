@@ -28,7 +28,7 @@ const PROJECTS: Project[] = [
 
 const ProjectStack: React.FC = () => {
   return (
-    <section id="projects" className="bg-dark py-20 px-6">
+    <section id="projects" className="bg-dark py-20 px-6 font-sans">
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center mb-24">
           <p className="text-[10px] uppercase tracking-[0.5em] text-white/40 mb-4 font-bold">Selected Works</p>
@@ -41,9 +41,9 @@ const ProjectStack: React.FC = () => {
               <div className="w-full h-full bg-[#1a1a1a] border border-white/10 grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl transition-transform hover:scale-[1.01] duration-700">
                 <div className="p-8 md:p-16 flex flex-col justify-between order-2 md:order-1">
                   <div>
-                    <span className="text-5xl font-display text-white/10 block mb-4">{project.id}</span>
-                    <h3 className="text-2xl md:text-4xl font-bold text-white mb-2">{project.title}</h3>
-                    <p className="text-[10px] uppercase tracking-widest text-white/50">{project.location}</p>
+                    <span className="text-5xl font-sans font-light text-white/10 block mb-4 tracking-tighter">{project.id}</span>
+                    <h3 className="text-2xl md:text-4xl font-bold text-white mb-2 tracking-tight uppercase">{project.title}</h3>
+                    <p className="text-[10px] uppercase tracking-widest text-white/50 font-bold">{project.location}</p>
                   </div>
                   <p className="text-gray-400 font-light leading-relaxed max-w-md">
                     {project.description}

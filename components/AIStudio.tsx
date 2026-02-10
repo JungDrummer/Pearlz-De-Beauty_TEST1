@@ -61,7 +61,7 @@ const AIStudio: React.FC = () => {
   };
 
   return (
-    <section id="studio" className="bg-stone py-32 px-6">
+    <section id="studio" className="bg-stone py-32 px-6 font-sans">
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-16 items-start">
         <div className="sticky top-32">
           <p className="text-[10px] uppercase tracking-[0.5em] text-dark/40 mb-4 font-bold">Dream Studio</p>
@@ -77,27 +77,27 @@ const AIStudio: React.FC = () => {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="공간에 대한 영감이나 키워드를 입력하세요... (예: 숲 속의 콘크리트 사원)"
-              className="w-full h-32 bg-white/50 border border-dark/10 p-4 focus:bg-white focus:outline-none transition-all placeholder:text-dark/30 text-sm"
+              className="w-full h-32 bg-white/50 border border-dark/10 p-4 focus:bg-white focus:outline-none transition-all placeholder:text-dark/30 text-sm font-sans"
             />
             
             <div className="flex flex-wrap gap-4">
               <button 
                 onClick={handleConsult}
                 disabled={isGenerating}
-                className="bg-dark text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-moss transition-colors disabled:opacity-50"
+                className="bg-dark text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-moss transition-colors disabled:opacity-50 font-sans"
               >
                 {isGenerating ? 'ANALYZING...' : 'ARCHITECTURAL CONSULT'}
               </button>
               <button 
                 onClick={handleDream}
                 disabled={isGenerating}
-                className="bg-moss text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-dark transition-colors disabled:opacity-50"
+                className="bg-moss text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-dark transition-colors disabled:opacity-50 font-sans"
               >
                 {isGenerating ? 'DREAMING...' : 'GENERATE CONCEPT'}
               </button>
               <button 
                 onClick={() => fileInputRef.current?.click()}
-                className="border border-dark/20 text-dark text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-white transition-colors"
+                className="border border-dark/20 text-dark text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-white transition-colors font-sans"
               >
                 UPLOAD REFERENCE
               </button>
@@ -128,14 +128,14 @@ const AIStudio: React.FC = () => {
           {isGenerating && (
             <div className="absolute inset-0 z-20 bg-stone/80 backdrop-blur-sm flex flex-col items-center justify-center">
               <div className="w-12 h-12 border-4 border-dark/10 border-t-moss rounded-full animate-spin mb-4"></div>
-              <p className="text-[10px] uppercase tracking-[0.5em] font-bold">Processing Dream...</p>
+              <p className="text-[10px] uppercase tracking-[0.5em] font-bold font-sans">Processing Dream...</p>
             </div>
           )}
 
           {!response && !generatedImg && !isGenerating && (
             <div className="text-center opacity-30">
               <iconify-icon icon="solar:square-academic-cap-linear" width="64"></iconify-icon>
-              <p className="mt-4 text-xs font-bold tracking-widest">AWAITING INSPIRATION</p>
+              <p className="mt-4 text-xs font-bold tracking-widest font-sans">AWAITING INSPIRATION</p>
             </div>
           )}
 
@@ -143,8 +143,8 @@ const AIStudio: React.FC = () => {
             <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-700">
               <img src={generatedImg} alt="Generated Concept" className="w-full h-auto shadow-2xl" />
               <div className="mt-8 p-4 bg-white/50 border-l-2 border-moss">
-                <p className="text-[10px] uppercase tracking-widest font-bold mb-2">Architectural Logic</p>
-                <p className="text-xs text-gray-600 leading-relaxed italic">
+                <p className="text-[10px] uppercase tracking-widest font-bold mb-2 font-sans">Architectural Logic</p>
+                <p className="text-xs text-gray-600 leading-relaxed italic font-sans">
                   "우리는 당신의 비전을 콘크리트와 빛의 조화로 재해석했습니다. 이 구조물은 중력에 대한 최소한의 저항과 최대한의 침묵을 상징합니다."
                 </p>
               </div>
@@ -153,8 +153,8 @@ const AIStudio: React.FC = () => {
 
           {response && !generatedImg && (
             <div className="w-full animate-in fade-in duration-700 prose prose-sm text-gray-700 max-w-none font-light leading-loose">
-              <p className="text-[10px] uppercase tracking-widest font-bold mb-6 text-dark border-b border-dark/10 pb-2">PEARLZ ARCHITECT ADVICE</p>
-              <div className="whitespace-pre-wrap">{response}</div>
+              <p className="text-[10px] uppercase tracking-widest font-bold mb-6 text-dark border-b border-dark/10 pb-2 font-sans">PEARLZ ARCHITECT ADVICE</p>
+              <div className="whitespace-pre-wrap font-sans">{response}</div>
             </div>
           )}
         </div>
