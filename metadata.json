@@ -1,0 +1,7 @@
+{
+  "name": "Pearlz De Beauty - PAGE",
+  "description": "Pearlz De Beauty - PAGE",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
