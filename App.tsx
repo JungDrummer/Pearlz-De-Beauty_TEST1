@@ -123,28 +123,42 @@ const App: React.FC = () => {
             { title: 'Natural Brow', sub: '엠보 자연 눈썹', description: '한 올 한 올 결을 살려 본인의 눈썹처럼 자연스러운 디자인', img: 'https://scontent-ssn1-1.cdninstagram.com/v/t51.82787-15/557304814_18078846899012670_6880746521328436143_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=MzczMzY1NTg3MjE1ODY5OTY0Ng%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=tl4K2aHwmSYQ7kNvwFr3X2D&_nc_oc=Adm18cz7tIb-Vz8lGJ6RseKB4ShZ7NmD5Lzu8dyYp8Qh2r3SdLwOByhBLfDZRRRTkNU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_gid=rr8M6NYyip0c2ciQn7BiBg&oh=00_AfsvOkIu2CA30CtFXw10xPn9pJ08TVUMjvc5hYKhhk98RQ&oe=6991DAF3' },
             { title: 'Signature Lip', sub: '풀 립 / 틴트 립', description: '생기 없는 입술에 맑은 컬러감을 입혀 화사한 안색을 선사', img: 'https://scontent-ssn1-1.cdninstagram.com/v/t51.82787-15/526022374_18072289010012670_3156651996318306017_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzY5MDA4MzgxMjY1NTg1OTM3NQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=-iVYDSHsCWcQ7kNvwE5yreI&_nc_oc=AdlfLSEteZFb5CiJaVPugcDV_KunTUqOvs5wses7s2O1nC4HYjUWWYJbVBarUgeE794&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_gid=rfsjo_Ox-TpIhWOdhd17Kw&oh=00_AfuYNEQhsPuN5Dnxiyj_TNobskRVefziuiVdSbhHkFO2RA&oe=6991C159' },
             { title: 'Secret Liner', sub: '점막 아이라인', description: '속눈썹 사이사이를 채워 더욱 또렷하고 깊은 눈매 연출', img: 'https://scontent-ssn1-1.cdninstagram.com/v/t51.82787-15/591151609_18085863068012670_1417484571637072141_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=Mzc4NTcxMDEyODQ5NTUxNzI1OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTc3NC5zZHIuQzMifQ%3D%3D&_nc_ohc=BeAqMtTPuMwQ7kNvwF9Q9om&_nc_oc=Adm-y77j2_OBF7hEwDDayfMmiJp0762Nys7y_-rZ6gnENeBZ40RFZEXdW9utbb1gD4M&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_gid=-nqEEoTNrK6c66s8X6VGhg&oh=00_AfuzwYtp14jI319kM06SHHyBo8CjoznTMPwTcJ2wyxQ3bQ&oe=6991B397' },
-            { title: 'Hairline Art', sub: '헤어라인 교정', description: '얼굴형을 보완하는 자연스러운 쉐딩 기법으로 동안 효과', img: 'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?q=80&w=1000&auto=format&fit=crop' },
-            { title: 'Skin SMP', sub: '두피 문신', description: '비어있는 모발 사이를 미세한 도트로 채워 풍성한 모량 표현', img: 'https://images.unsplash.com/photo-1522337660859-02fbefad15c0?q=80&w=1000&auto=format&fit=crop' },
-            { title: 'Combo Brow', sub: '콤보 / 수지 눈썹', description: '결과 면의 조화로 메이크업을 한 듯 선명하고 깔끔한 눈썹', img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop' }
-          ].map((item, idx) => (
-            <div key={idx} className="reveal group cursor-pointer">
-              <div className="aspect-[3/4] overflow-hidden mb-8 border border-white/5 relative">
-                <img 
-                  src={item.img} 
-                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" 
-                  alt={item.title} 
-                />
-                <div className="absolute top-6 left-6 text-[32px] font-sans font-light opacity-10 group-hover:opacity-30 transition-opacity">0{idx+1}</div>
-              </div>
-              <div className="space-y-4">
-                <div className="flex justify-between items-end">
-                  <h4 className="text-xl font-bold tracking-tight font-sans uppercase">{item.title}</h4>
-                  <span className="text-nude text-[9px] font-bold tracking-widest uppercase mb-1">{item.sub}</span>
+            { title: 'Hairline Art', sub: '헤어라인 교정', description: '얼굴형을 보완하는 자연스러운 쉐딩 기법으로 동안 효과', img: 'https://scontent-icn2-1.cdninstagram.com/v/t51.75761-15/474881581_18054762281012670_5377175515633241178_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzU1MjQyMDE2ODU4Mjc2NzczNA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTgwMC5zZHIuQzMifQ%3D%3D&_nc_ohc=pO3i7OSVdwgQ7kNvwG12i9R&_nc_oc=Adm-Xu7P45mjGKZrlwa627eMvFaITjP90Mj4f8vVqvizD5cdIOLy1QsbbADi5yCqCRg&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=QorPyVEbeTwYnx0l28991A&oh=00_AfuQiUU7zbSre33keaYlp0k8b1LoqpQ2ly_qzUlF8PkGlA&oe=69925D0F' },
+            { title: 'Skin SMP', sub: '두피 문신', description: '비어있는 모발 사이를 미세한 도트로 채워 풍성한 모량 표현', img: 'https://scontent-icn2-1.cdninstagram.com/v/t51.82787-15/625414838_18091100972012670_5760230736523944573_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=106&ig_cache_key=MzgyNjQ1NTc0NDkyNjEwNTIxNA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=Bhu37Z9TjPcQ7kNvwHLbgqW&_nc_oc=AdlTDwSAVR22IMYgdK1QXsnhFBFQ3uFVJ9zjpix60LubbYRKb6Dmaeq48GhIkDMToAM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_gid=OQmXYwZTyK0K4tWNtHWcVA&oh=00_AftOdkCvm6hcLmpN-aIqRqoaY-zGd-VhqH9E2UXqRhopsg&oe=69924B04' },
+            { title: 'Combo Brow', sub: '콤보 / 수지 눈썹', description: '결과 면의 조화로 메이크업을 한 듯 선명하고 깔끔한 눈썹', img: 'https://scontent-icn2-1.cdninstagram.com/o1/v/t16/f2/m69/AQN2V52nFFOa8cIUMsg32ZMBTYesK4Ok209dU31c3BLwKSkeKXv45BCkS_f-alHn1uN_AdnC39WN4uw_LVr9FS8Z.mp4?strext=1&_nc_cat=109&_nc_sid=5e9851&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_ohc=NdvQ75eF_sUQ7kNvwEgs_kc&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MTc5NDU3OTU1MzUxMDE4NjAsImFzc2V0X2FnZV9kYXlzIjoxLCJ2aV91c2VjYXNlX2lkIjoxMDA5OSwiZHVyYXRpb25fcyI6MTAsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&_nc_gid=JAGJwQnr5tOWECdC5pyabQ&_nc_zt=28&vs=68e03c4afd126a16&_nc_vs=HBksFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HSVBLaUNYUHd1Mk4xTEFGQUFFUHdLMWhoSkZ3YnNwVEFRQUYVAALIARIAFQIYUWlnX3hwdl9wbGFjZW1lbnRfcGVybWFuZW50X3YyL0JFNDMxNDZDMTM0NDEzQUQyQzc0RDMxNjRCRDhFRDg0X2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACbI_qaB5ObgPxUCKAJDMywXQCUhysCDEm8YEmRhc2hfYmFzZWxpbmVfMV92MREAdf4HZeadAQA&oh=00_AfuUA1jig5aX4AogX6mO8UnEKSJ5OaPwcEN_f6tvpmioqw&oe=69926D5F' }
+          ].map((item, idx) => {
+            const isVideo = item.img.includes('.mp4');
+            return (
+              <div key={idx} className="reveal group cursor-pointer">
+                <div className="aspect-[3/4] overflow-hidden mb-8 border border-white/5 relative bg-black/20 flex items-center justify-center">
+                  {isVideo ? (
+                    <video 
+                      src={item.img} 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline 
+                      className="w-full h-full object-contain transition-all duration-1000 group-hover:scale-105"
+                    />
+                  ) : (
+                    <img 
+                      src={item.img} 
+                      className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" 
+                      alt={item.title} 
+                    />
+                  )}
+                  <div className="absolute top-6 left-6 text-[32px] font-sans font-light opacity-10 group-hover:opacity-30 transition-opacity">0{idx+1}</div>
                 </div>
-                <p className="text-white/40 text-[13px] font-light leading-relaxed">{item.description}</p>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-end">
+                    <h4 className="text-xl font-bold tracking-tight font-sans uppercase">{item.title}</h4>
+                    <span className="text-nude text-[9px] font-bold tracking-widest uppercase mb-1">{item.sub}</span>
+                  </div>
+                  <p className="text-white/40 text-[13px] font-light leading-relaxed">{item.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-40 text-center reveal">
@@ -156,66 +170,73 @@ const App: React.FC = () => {
     </section>
   );
 
-  const TrainingView = () => (
-    <section className="bg-cream text-dark min-h-screen pt-32 pb-40">
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-24 items-start mb-32 reveal">
-          <div>
-            <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">Elite Education</span>
-            <h2 className="text-4xl md:text-7xl font-bold font-sans uppercase tracking-tighter leading-none mb-10">
-              수강 <span className="text-dark/10">메뉴</span>
-            </h2>
-            <p className="text-lg md:text-xl font-light text-dark/60 leading-relaxed max-w-lg">
-              기초부터 창업까지, 펄즈만의 차별화된 테크닉과 경영 노하우를 아낌없이 전수합니다.
-            </p>
-          </div>
-          <div className="aspect-[16/9] bg-dark relative overflow-hidden flex items-center justify-center">
-            <img 
-              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop" 
-              className="absolute inset-0 w-full h-full object-cover opacity-60" 
-              alt="Classroom"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {[
-            { 
-              title: 'Master Class', 
-              target: '창업 준비생', 
-              period: '12 Weeks',
-              content: ['눈썹/입술/아이라인 전 항목', '색소 배합 & 고무판 트레이닝', '실습 데모 다수 포함', '마케팅 & 고객 상담법']
-            },
-            { 
-              title: 'One-Day Class', 
-              target: '현직 아티스트', 
-              period: '1 Day',
-              content: ['취약한 항목 집중 교정', '펄즈 시그니처 결 드로잉', '니들 텐션 & 각도 비밀', '결과물 사진 촬영 노하우']
-            }
-          ].map((course, idx) => (
-            <div key={idx} className="bg-white p-12 md:p-16 border border-dark/5 reveal hover:border-nude/30 transition-colors shadow-sm">
-              <div className="flex justify-between items-start mb-10">
-                <h3 className="text-3xl font-bold font-sans uppercase tracking-tighter">{course.title}</h3>
-                <span className="text-[9px] font-bold tracking-[0.3em] uppercase bg-dark text-white px-4 py-1 font-sans">{course.period}</span>
-              </div>
-              <p className="text-nude text-[10px] font-bold tracking-[0.4em] mb-10 uppercase font-sans">{course.target}</p>
-              <ul className="space-y-4">
-                {course.content.map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-dark/60 text-[13px] font-medium">
-                    <div className="w-1 h-1 bg-nude rotate-45"></div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <button onClick={() => handleNavigate('booking')} className="mt-12 w-full py-5 border border-dark/10 text-[9px] font-bold tracking-[0.3em] uppercase hover:bg-dark hover:text-white transition-all font-sans">
-                Detail Inquiry
-              </button>
+  const TrainingView = () => {
+    const videoUrl = "https://scontent-icn2-1.cdninstagram.com/o1/v/t16/f2/m69/AQN2V52nFFOa8cIUMsg32ZMBTYesK4Ok209dU31c3BLwKSkeKXv45BCkS_f-alHn1uN_AdnC39WN4uw_LVr9FS8Z.mp4?strext=1&_nc_cat=109&_nc_sid=5e9851&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_ohc=NdvQ75eF_sUQ7kNvwEgs_kc&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MTc5NDU3OTU1MzUxMDE4NjAsImFzc2V0X2FnZV9kYXlzIjoxLCJ2aV91c2VjYXNlX2lkIjoxMDA5OSwiZHVyYXRpb25fcyI6MTAsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&_nc_gid=JAGJwQnr5tOWECdC5pyabQ&_nc_zt=28&vs=68e03c4afd126a16&_nc_vs=HBksFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HSVBLaUNYUHd1Mk4xTEFGQUFFUHdLMWhoSkZ3YnNwVEFRQUYVAALIARIAFQIYUWlnX3hwdl9wbGFjZW1lbnRfcGVybWFuZW50X3YyL0JFNDMxNDZDMTM0NDEzQUQyQzc0RDMxNjRCRDhFRDg0X2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACbI_qaB5ObgPxUCKAJDMywXQCUhysCDEm8YEmRhc2hfYmFzZWxpbmVfMV92MREAdf4HZeadAQA&oh=00_AfuUA1jig5aX4AogX6mO8UnEKSJ5OaPwcEN_f6tvpmioqw&oe=69926D5F";
+    
+    return (
+      <section className="bg-cream text-dark min-h-screen pt-32 pb-40">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-24 items-start mb-32 reveal">
+            <div>
+              <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">Elite Education</span>
+              <h2 className="text-4xl md:text-7xl font-bold font-sans uppercase tracking-tighter leading-none mb-10">
+                수강 <span className="text-dark/10">메뉴</span>
+              </h2>
+              <p className="text-lg md:text-xl font-light text-dark/60 leading-relaxed max-w-lg">
+                기초부터 창업까지, 펄즈만의 차별화된 테크닉과 경영 노하우를 아낌없이 전수합니다.
+              </p>
             </div>
-          ))}
+            <div className="aspect-[16/9] bg-dark relative overflow-hidden flex items-center justify-center">
+              <video 
+                src={videoUrl} 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="absolute inset-0 w-full h-full object-cover opacity-60"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {[
+              { 
+                title: 'Master Class', 
+                target: '창업 준비생', 
+                period: '12 Weeks',
+                content: ['눈썹/입술/아이라인 전 항목', '색소 배합 & 고무판 트레이닝', '실습 데모 다수 포함', '마케팅 & 고객 상담법']
+              },
+              { 
+                title: 'One-Day Class', 
+                target: '현직 아티스트', 
+                period: '1 Day',
+                content: ['취약한 항목 집중 교정', '펄즈 시그니처 결 드로잉', '니들 텐션 & 각도 비밀', '결과물 사진 촬영 노하우']
+              }
+            ].map((course, idx) => (
+              <div key={idx} className="bg-white p-12 md:p-16 border border-dark/5 reveal hover:border-nude/30 transition-colors shadow-sm">
+                <div className="flex justify-between items-start mb-10">
+                  <h3 className="text-3xl font-bold font-sans uppercase tracking-tighter">{course.title}</h3>
+                  <span className="text-[9px] font-bold tracking-[0.3em] uppercase bg-dark text-white px-4 py-1 font-sans">{course.period}</span>
+                </div>
+                <p className="text-nude text-[10px] font-bold tracking-[0.4em] mb-10 uppercase font-sans">{course.target}</p>
+                <ul className="space-y-4">
+                  {course.content.map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 text-dark/60 text-[13px] font-medium">
+                      <div className="w-1 h-1 bg-nude rotate-45"></div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <button onClick={() => handleNavigate('booking')} className="mt-12 w-full py-5 border border-dark/10 text-[9px] font-bold tracking-[0.3em] uppercase hover:bg-dark hover:text-white transition-all font-sans">
+                  Detail Inquiry
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  };
 
   return (
     <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
