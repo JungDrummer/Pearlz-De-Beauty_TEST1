@@ -1,4 +1,3 @@
-
 import React from 'react';
 import '../types';
 
@@ -31,16 +30,13 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="mt-20 text-[8px] tracking-[0.5em] text-white/10 uppercase font-bold font-sans">
-          © 2025 Pearlz De Beauty. ALL RIGHTS RESERVED.
+          <div>© 2025 Pearlz De Beauty.</div>
+          <div>ALL RIGHTS RESERVED.</div>
         </div>
       </div>
       
       {/* Background Graphic */}
-      <img 
-        src="https://images.unsplash.com/photo-1522337360733-412a652854fc?q=80&w=2000&auto=format&fit=crop" 
-        className="absolute inset-0 w-full h-full object-cover opacity-5 grayscale" 
-        alt="Footer BG"
-      />
+
     </footer>
   );
 };

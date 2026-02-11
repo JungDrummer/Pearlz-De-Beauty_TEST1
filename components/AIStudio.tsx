@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { getGeminiResponse, generateArchitecturalImage } from '../services/geminiService';
 import { AIModelType } from '../types';
@@ -161,6 +160,4 @@ const AIStudio: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default AIStudio;
+}; export default AIStudio;

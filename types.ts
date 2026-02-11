@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export type ViewState = 'home' | 'procedures' | 'training' | 'booking';
