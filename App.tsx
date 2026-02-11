@@ -38,7 +38,7 @@ const App: React.FC = () => {
       {/* TOP HERO SECTION */}
       <section className="relative w-full h-[75vh] flex items-center justify-center overflow-hidden bg-dark">
         <img 
-          src="/IMG_7081" 
+          src="https://images.unsplash.com/photo-1522337360733-412a652854fc?q=80&w=2000&auto=format&fit=crop" 
           className="absolute inset-0 w-full h-full object-cover brightness-[0.4] scale-105" 
           alt="Main Hero Portfolio" 
         />
@@ -56,7 +56,7 @@ const App: React.FC = () => {
       {/* 3 Main Menu Cards */}
       <section className="flex flex-col bg-dark overflow-hidden">
         {[
-          { title: 'Procedures', label: '시술 항목', view: 'procedures' as ViewState, img: '/IMG_7081.jpeg' },
+          { title: 'Procedures', label: '시술 항목', view: 'procedures' as ViewState, img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop' },
           { title: 'Education', label: '수강 메뉴', view: 'training' as ViewState, img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop' },
           { title: 'Booking', label: '예약 문의', view: 'booking' as ViewState, img: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=1000&auto=format&fit=crop' }
         ].map((card) => (
