@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import { ViewState } from './types';
@@ -265,7 +266,7 @@ const App: React.FC = () => {
                  Book <span className="text-dark/10">Now</span>
                </h2>
                <p className="text-lg font-light text-dark/50 mb-16 leading-relaxed">
-                 원하시는 시술이나 수강 항목을 말씀해 주시면 <br/>
+                 원하���는 시술이나 수강 항목을 말씀해 주시면 <br/>
                  빠른 시간 내에 답변 드리겠습니다.
                </p>
                <div className="flex flex-col md:flex-row items-center justify-center gap-6">
@@ -282,6 +283,8 @@ const App: React.FC = () => {
       </main>
 
       <Footer />
+
+      <Analytics />
 
       <style>{`
         @keyframes loading {
