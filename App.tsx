@@ -2,12 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+// Fix: Added generateBeautyImage import (service was renamed from architectural to beauty)
+import { generateBeautyImage } from './services/geminiService';
 import { ViewState } from './types';
 import './types';
 
 const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentView, setCurrentView] = useState<ViewState>('home');
+  const [aiImages, setAiImages] = useState<Record<number, string>>({});
+  const [generatingIds, setGeneratingIds] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 800);
@@ -33,46 +37,97 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
+  // Generate AI Images for procedures when the view is entered
+  useEffect(() => {
+    if (currentView === 'procedures') {
+      const procedures = [
+        "Natural feathered eyebrows, microblading texture",
+        "Soft tinted lips, subtle coral color, hydrated texture",
+        "Deep black eyeliner, tightline, sharp focus on eyes",
+        "Hairline correction, natural shading on forehead",
+        "Scalp micro-pigmentation, realistic hair follicle dots",
+        "Combo brow technique, professional shading and hair strokes"
+      ];
+
+      procedures.forEach(async (prompt, idx) => {
+        if (!aiImages[idx]) {
+          setGeneratingIds(prev => new Set(prev).add(idx));
+          const img = await generateBeautyImage(prompt);
+          if (img) {
+            setAiImages(prev => ({ ...prev, [idx]: img }));
+          }
+          setGeneratingIds(prev => {
+            const next = new Set(prev);
+            next.delete(idx);
+            return next;
+          });
+        }
+      });
+    }
+  }, [currentView]);
+
   const HomeView = () => (
     <>
-      {/* TOP HERO SECTION */}
-      <section className="relative w-full h-[75vh] flex items-center justify-center overflow-hidden bg-dark">
+      {/* TOP HERO SECTION - Updated background to /Images/main_1.jpeg and matched screenshot design */}
+      <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-dark">
         <img 
-          src="https://images.unsplash.com/photo-1522337360733-412a652854fc?q=80&w=2000&auto=format&fit=crop" 
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.4] scale-105" 
-          alt="Main Hero Portfolio" 
+          src="/Images/main_1.jpeg" 
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.35] scale-100 pointer-events-none" 
+          alt="Main Hero Background" 
+          onError={(e) => {
+            // Fallback for development if path is slightly different
+            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1583001931046-648c6f194384?q=80&w=1000&auto=format&fit=crop";
+          }}
         />
-        <div className="relative z-10 text-center text-white px-4 reveal">
-          <h1 className="text-[12vw] md:text-[8vw] font-bold leading-none mb-6 font-brand tracking-tighter uppercase">
-            Pearlz <br/> <span className="text-nude/60">De Beauty</span>
-          </h1>
-          <p className="text-xs md:text-sm uppercase tracking-[0.6em] font-semibold opacity-80 mb-8 font-sans">
-            남들이 어디서 했냐고 물어보는 곳
+        
+        <div className="relative z-20 text-center px-4 reveal flex flex-col items-center">
+          <div className="flex flex-col items-center mb-10">
+            {/* PEARLZ - White as in screenshot */}
+            <h1 className="text-[16vw] md:text-[11vw] font-bold leading-[0.8] font-brand tracking-tighter uppercase text-white mb-2 drop-shadow-2xl">
+              Pearlz
+            </h1>
+            {/* DE BEAUTY - Nude/Bronze as in screenshot */}
+            <h1 className="text-[16vw] md:text-[11vw] font-bold leading-[0.8] font-brand tracking-tighter uppercase text-nude drop-shadow-2xl">
+              De Beauty
+            </h1>
+          </div>
+          
+          {/* Slogan with very wide letter spacing as shown in screenshot */}
+          <p className="text-[10px] md:text-xs uppercase tracking-[0.8em] font-medium mb-20 font-sans text-white/90">
+            남 들 이 어 디 서 했 냐 고 물 어 보 는 곳
           </p>
-          <div className="w-px h-16 bg-white/20 mx-auto mt-8"></div>
+
+          {/* Decorative Center Vertical Line */}
+          <div className="w-[1px] h-32 bg-white/30"></div>
         </div>
       </section>
 
       {/* 3 Main Menu Cards */}
       <section className="flex flex-col bg-dark overflow-hidden">
         {[
-          { title: 'Procedures', label: '시술 항목', view: 'procedures' as ViewState, img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop' },
+          { title: 'Procedures', label: '시술 항목', view: 'procedures' as ViewState, img: '/Images/main_1.jpeg' },
           { title: 'Education', label: '수강 메뉴', view: 'training' as ViewState, img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop' },
           { title: 'Booking', label: '예약 문의', view: 'booking' as ViewState, img: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=1000&auto=format&fit=crop' }
         ].map((card) => (
           <button 
             key={card.view}
             onClick={() => handleNavigate(card.view)}
-            className="relative w-full h-[40vh] md:h-[50vh] group overflow-hidden border-b border-white/5 last:border-0 transition-all duration-700 flex flex-col"
+            className="relative w-full h-[45vh] md:h-[60vh] group overflow-hidden border-b border-white/5 last:border-0 transition-all duration-700 flex flex-col"
           >
             <img 
               src={card.img} 
-              className="absolute inset-0 w-full h-full object-cover brightness-[0.35] group-hover:brightness-[0.55] group-hover:scale-110 transition-all duration-1000"
+              className="absolute inset-0 w-full h-full object-cover brightness-[0.3] group-hover:brightness-[0.5] group-hover:scale-105 transition-all duration-1000"
               alt={card.label}
+              onError={(e) => {
+                if (card.img === '/Images/main_1.jpeg') {
+                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1583001931046-648c6f194384?q=80&w=1000&auto=format&fit=crop";
+                }
+              }}
             />
             <div className="relative flex-1 flex flex-col items-center justify-center z-10 text-white p-6 text-center">
-              <span className="text-[10px] tracking-[0.5em] opacity-40 mb-3 group-hover:opacity-100 transition-opacity uppercase font-bold font-sans">{card.title}</span>
-              <h2 className="text-2xl md:text-4xl font-black group-hover:tracking-[0.05em] transition-all duration-500">{card.label}</h2>
+              <span className="text-[10px] tracking-[0.5em] opacity-30 mb-4 group-hover:opacity-100 transition-opacity uppercase font-bold font-sans">{card.title}</span>
+              <h2 className="text-3xl md:text-5xl font-black group-hover:tracking-[0.1em] transition-all duration-700">{card.label}</h2>
+              <div className="w-0 group-hover:w-16 h-px bg-nude mt-6 transition-all duration-700"></div>
             </div>
           </button>
         ))}
@@ -98,29 +153,41 @@ const App: React.FC = () => {
     <section className="bg-dark text-white min-h-screen pt-32 pb-40">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="mb-24 reveal text-center md:text-left">
-          <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">The Collection</span>
+          <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">AI Signature Collection</span>
           <h2 className="text-5xl md:text-8xl font-bold font-sans uppercase tracking-tighter leading-none mb-10">
             시술 <span className="text-white/20">항목</span>
           </h2>
+          <p className="text-white/40 text-sm tracking-widest uppercase mb-10 font-sans">Gemini AI가 실시간으로 펄즈의 무드를 생성합니다</p>
           <div className="h-px w-32 bg-nude opacity-30 mx-auto md:mx-0"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
           {[
-            { title: 'Natural Brow', sub: '엠보 자연 눈썹', description: '한 올 한 올 결을 살려 본인의 눈썹처럼 자연스러운 디자인', img: 'https://images.unsplash.com/photo-1583001931046-648c6f194384?q=80&w=1000&auto=format&fit=crop' },
-            { title: 'Signature Lip', sub: '풀 립 / 틴트 립', description: '생기 없는 입술에 맑은 컬러감을 입혀 화사한 안색을 선사', img: 'https://images.unsplash.com/photo-1586450393135-260905952f42?q=80&w=1000&auto=format&fit=crop' },
-            { title: 'Secret Liner', sub: '점막 아이라인', description: '속눈썹 사이사이를 채워 더욱 또렷하고 깊은 눈매 연출', img: 'https://images.unsplash.com/photo-1596704017254-9b121068fb31?q=80&w=1000&auto=format&fit=crop' },
-            { title: 'Hairline Art', sub: '헤어라인 교정', description: '얼굴형을 보완하는 자연스러운 쉐딩 기법으로 동안 효과', img: 'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?q=80&w=1000&auto=format&fit=crop' },
-            { title: 'Skin SMP', sub: '두피 문신', description: '비어있는 모발 사이를 미세한 도트로 채워 풍성한 모량 표현', img: 'https://images.unsplash.com/photo-1522337660859-02fbefad15c0?q=80&w=1000&auto=format&fit=crop' },
-            { title: 'Combo Brow', sub: '콤보 / 수지 눈썹', description: '결과 면의 조화로 메이크업을 한 듯 선명하고 깔끔한 눈썹', img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop' }
+            { title: 'Natural Brow', sub: '엠보 자연 눈썹', description: '한 올 한 올 결을 살려 본인의 눈썹처럼 자연스러운 디자인' },
+            { title: 'Signature Lip', sub: '풀 립 / 틴트 립', description: '생기 없는 입술에 맑은 컬러감을 입혀 화사한 안색을 선사' },
+            { title: 'Secret Liner', sub: '점막 아이라인', description: '속눈썹 사이사이를 채워 더욱 또렷하고 깊은 눈매 연출' },
+            { title: 'Hairline Art', sub: '헤어라인 교정', description: '얼굴형을 보완하는 자연스러운 쉐딩 기법으로 동안 효과' },
+            { title: 'Skin SMP', sub: '두피 문신', description: '비어있는 모발 사이를 미세한 도트로 채워 풍성한 모량 표현' },
+            { title: 'Combo Brow', sub: '콤보 / 수지 눈썹', description: '결과 면의 조화로 메이크업을 한 듯 선명하고 깔끔한 눈썹' }
           ].map((item, idx) => (
             <div key={idx} className="reveal group cursor-pointer">
-              <div className="aspect-[3/4] overflow-hidden mb-8 border border-white/5 relative">
-                <img 
-                  src={item.img} 
-                  className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
-                  alt={item.title} 
-                />
+              <div className="aspect-[3/4] overflow-hidden mb-8 border border-white/5 relative bg-white/5">
+                {generatingIds.has(idx) ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <div className="w-8 h-8 border-2 border-white/10 border-t-nude rounded-full animate-spin mb-4"></div>
+                    <span className="text-[8px] tracking-[0.3em] uppercase opacity-30 font-sans">Generating Vision...</span>
+                  </div>
+                ) : aiImages[idx] ? (
+                  <img 
+                    src={aiImages[idx]} 
+                    className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
+                    alt={item.title} 
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                    <iconify-icon icon="solar:camera-linear" width="48"></iconify-icon>
+                  </div>
+                )}
                 <div className="absolute top-6 left-6 text-[40px] font-sans font-light opacity-10 group-hover:opacity-30 transition-opacity">0{idx+1}</div>
               </div>
               <div className="space-y-4">
@@ -144,81 +211,45 @@ const App: React.FC = () => {
     </section>
   );
 
+  /**
+   * Fix: Added TrainingView component to resolve "Cannot find name 'TrainingView'" error.
+   */
   const TrainingView = () => (
-    <section className="bg-cream text-dark min-h-screen pt-32 pb-40">
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-24 items-start mb-32 reveal">
-          <div>
-            <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">Elite Education</span>
-            <h2 className="text-5xl md:text-8xl font-bold font-sans uppercase tracking-tighter leading-none mb-10">
-              수강 <span className="text-dark/10">메뉴</span>
+    <section className="bg-cream min-h-screen pt-32 pb-40">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="reveal">
+            <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-8 font-sans">Academy</span>
+            <h2 className="text-5xl md:text-7xl font-bold font-sans uppercase tracking-tighter leading-tight mb-12">
+              Master the <br/><span className="text-nude italic font-light">Art of Beauty</span>
             </h2>
-            <p className="text-xl md:text-2xl font-light text-dark/60 leading-relaxed max-w-lg">
-              기초부터 창업까지, 펄즈만의 차별화된 테크닉과 경영 노하우를 아낌없이 전수합니다.
-            </p>
-          </div>
-          <div className="aspect-[16/9] bg-dark relative overflow-hidden flex items-center justify-center">
-            <img 
-              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop" 
-              className="absolute inset-0 w-full h-full object-cover opacity-60" 
-              alt="Classroom"
-            />
-            <iconify-icon icon="solar:play-circle-bold" className="text-white text-7xl relative z-10 cursor-pointer hover:scale-110 transition-transform"></iconify-icon>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-32">
-          {[
-            { 
-              title: 'Master Class', 
-              target: '창업 준비생', 
-              period: '12 Weeks',
-              content: ['눈썹/입술/아이라인 전 항목', '색소 배합 & 고무판 트레이닝', '실습 데모 다수 포함', '마케팅 & 고객 상담법']
-            },
-            { 
-              title: 'One-Day Class', 
-              target: '현직 아티스트', 
-              period: '1 Day',
-              content: ['취약한 항목 집중 교정', '펄즈 시그니처 결 드로잉', '니들 텐션 & 각도 비밀', '결과물 사진 촬영 노하우']
-            }
-          ].map((course, idx) => (
-            <div key={idx} className="bg-white p-12 md:p-20 border border-dark/5 reveal hover:border-nude/30 transition-colors shadow-sm">
-              <div className="flex justify-between items-start mb-12">
-                <h3 className="text-4xl font-bold font-sans uppercase tracking-tighter">{course.title}</h3>
-                <span className="text-[10px] font-bold tracking-[0.3em] uppercase bg-dark text-white px-4 py-1 font-sans">{course.period}</span>
-              </div>
-              <p className="text-nude text-xs font-bold tracking-[0.4em] mb-12 uppercase font-sans">{course.target}</p>
-              <ul className="space-y-6">
-                {course.content.map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-dark/60 text-sm font-medium">
-                    <div className="w-1.5 h-1.5 bg-nude rotate-45"></div>
-                    {item}
+            <div className="space-y-8 text-dark/70 font-light leading-relaxed">
+              <p>펄즈데뷰티의 시그니처 테크닉을 전수합니다. 단순한 기술을 넘어, 고객의 본연의 아름다움을 찾아내는 감각을 교육합니다.</p>
+              <ul className="space-y-4">
+                {['1:1 맞춤형 밀착 교육', '실전 위주의 테크닉 전수', '창업 및 마케팅 컨설팅', '디플로마 수여'].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4">
+                    <div className="w-1.5 h-1.5 bg-nude rounded-full"></div>
+                    <span className="text-sm tracking-wide">{item}</span>
                   </li>
                 ))}
               </ul>
-              <button className="mt-16 w-full py-6 border border-dark/10 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-dark hover:text-white transition-all font-sans">
-                Detail Inquiry
+              <button onClick={() => handleNavigate('booking')} className="mt-8 bg-dark text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-nude transition-all font-sans">
+                수강 문의하기
               </button>
             </div>
-          ))}
-        </div>
-
-        <div className="reveal">
-          <div className="text-center mb-16">
-            <span className="text-[10px] tracking-[0.5em] font-bold text-nude uppercase font-sans">Environment</span>
-            <h3 className="text-3xl font-black mt-4 uppercase">Academy Space</h3>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-             {[
-               'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000',
-               'https://images.unsplash.com/photo-1522337660859-02fbefad15c0?q=80&w=1000',
-               'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1000',
-               'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=1000'
-             ].map((img, i) => (
-               <div key={i} className="aspect-square bg-dark overflow-hidden group">
-                 <img src={img} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" />
-               </div>
-             ))}
+          <div className="relative reveal">
+            <div className="aspect-[4/5] overflow-hidden border border-dark/5">
+              <img 
+                src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop" 
+                className="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-1000" 
+                alt="Training Session" 
+              />
+            </div>
+            <div className="absolute -bottom-10 -left-10 bg-white p-10 border border-dark/5 shadow-xl hidden md:block">
+              <span className="text-4xl font-bold text-nude block mb-2 font-sans">99%</span>
+              <p className="text-[10px] uppercase tracking-widest font-bold text-dark/40 font-sans">Success Rate</p>
+            </div>
           </div>
         </div>
       </div>

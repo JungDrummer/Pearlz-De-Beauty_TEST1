@@ -1,6 +1,7 @@
 
 import React, { useState, useRef } from 'react';
-import { getGeminiResponse, generateArchitecturalImage } from '../services/geminiService';
+// Fix: Updated import to use generateBeautyImage instead of generateArchitecturalImage
+import { getGeminiResponse, generateBeautyImage } from '../services/geminiService';
 import { AIModelType } from '../types';
 
 const AIStudio: React.FC = () => {
@@ -19,7 +20,7 @@ const AIStudio: React.FC = () => {
     
     try {
       const res = await getGeminiResponse(
-        prompt || "이 이미지를 분석하여 펄즈 스타일의 건축적 조언을 해주세요.",
+        prompt || "이 이미지를 분석하여 펄즈 스타일의 아름다움에 대한 조언을 해주세요.",
         AIModelType.FLASH,
         uploadedImg ? { data: uploadedImg, mimeType: 'image/jpeg' } : undefined
       );
@@ -39,7 +40,8 @@ const AIStudio: React.FC = () => {
     setGeneratedImg(null);
 
     try {
-      const img = await generateArchitecturalImage(prompt, AIModelType.FLASH_IMAGE);
+      // Fix: Call generateBeautyImage instead of renamed generateArchitecturalImage
+      const img = await generateBeautyImage(prompt, AIModelType.FLASH_IMAGE);
       setGeneratedImg(img);
     } catch (error) {
       console.error(error);
@@ -64,19 +66,19 @@ const AIStudio: React.FC = () => {
     <section id="studio" className="bg-stone py-32 px-6 font-sans">
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-16 items-start">
         <div className="sticky top-32">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-dark/40 mb-4 font-bold">Dream Studio</p>
+          <p className="text-[10px] uppercase tracking-[0.5em] text-dark/40 mb-4 font-bold">Beauty Dream Studio</p>
           <h2 className="text-4xl md:text-5xl font-black text-dark mb-8 leading-tight">
-            당신의 건축적 영감을 <br/><span className="text-moss">공간으로 구현하다</span>
+            당신의 본연의 아름다움을 <br/><span className="text-nude">예술로 승화하다</span>
           </h2>
           <p className="text-gray-600 font-light mb-12 leading-relaxed">
-            펄즈의 AI 아키텍처 스튜디오를 만나보세요. 텍스트나 이미지를 통해 당신의 상상을 구체적인 설계 개념으로 변환해 드립니다.
+            펄즈의 AI 뷰티 스튜디오를 만나보세요. 텍스트나 이미지를 통해 당신이 꿈꾸는 미학적 비전을 구체화해 드립니다.
           </p>
           
           <div className="space-y-4">
             <textarea 
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="공간에 대한 영감이나 키워드를 입력하세요... (예: 숲 속의 콘크리트 사원)"
+              placeholder="추구하시는 스타일이나 분위기를 입력하세요... (예: 자연스러운 결을 살린 세련된 눈썹)"
               className="w-full h-32 bg-white/50 border border-dark/10 p-4 focus:bg-white focus:outline-none transition-all placeholder:text-dark/30 text-sm font-sans"
             />
             
@@ -84,16 +86,16 @@ const AIStudio: React.FC = () => {
               <button 
                 onClick={handleConsult}
                 disabled={isGenerating}
-                className="bg-dark text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-moss transition-colors disabled:opacity-50 font-sans"
+                className="bg-dark text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-nude transition-colors disabled:opacity-50 font-sans"
               >
-                {isGenerating ? 'ANALYZING...' : 'ARCHITECTURAL CONSULT'}
+                {isGenerating ? 'ANALYZING...' : 'BEAUTY CONSULT'}
               </button>
               <button 
                 onClick={handleDream}
                 disabled={isGenerating}
-                className="bg-moss text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-dark transition-colors disabled:opacity-50 font-sans"
+                className="bg-nude text-white text-[10px] uppercase tracking-widest px-8 py-4 font-bold hover:bg-dark transition-colors disabled:opacity-50 font-sans"
               >
-                {isGenerating ? 'DREAMING...' : 'GENERATE CONCEPT'}
+                {isGenerating ? 'DREAMING...' : 'GENERATE VISION'}
               </button>
               <button 
                 onClick={() => fileInputRef.current?.click()}
@@ -127,25 +129,25 @@ const AIStudio: React.FC = () => {
         <div className="min-h-[500px] border border-dark/5 bg-white/30 p-8 flex flex-col items-center justify-center relative overflow-hidden">
           {isGenerating && (
             <div className="absolute inset-0 z-20 bg-stone/80 backdrop-blur-sm flex flex-col items-center justify-center">
-              <div className="w-12 h-12 border-4 border-dark/10 border-t-moss rounded-full animate-spin mb-4"></div>
-              <p className="text-[10px] uppercase tracking-[0.5em] font-bold font-sans">Processing Dream...</p>
+              <div className="w-12 h-12 border-4 border-dark/10 border-t-nude rounded-full animate-spin mb-4"></div>
+              <p className="text-[10px] uppercase tracking-[0.5em] font-bold font-sans">Processing Vision...</p>
             </div>
           )}
 
           {!response && !generatedImg && !isGenerating && (
             <div className="text-center opacity-30">
-              <iconify-icon icon="solar:square-academic-cap-linear" width="64"></iconify-icon>
+              <iconify-icon icon="solar:magic-stick-3-linear" width="64"></iconify-icon>
               <p className="mt-4 text-xs font-bold tracking-widest font-sans">AWAITING INSPIRATION</p>
             </div>
           )}
 
           {generatedImg && (
             <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <img src={generatedImg} alt="Generated Concept" className="w-full h-auto shadow-2xl" />
-              <div className="mt-8 p-4 bg-white/50 border-l-2 border-moss">
-                <p className="text-[10px] uppercase tracking-widest font-bold mb-2 font-sans">Architectural Logic</p>
+              <img src={generatedImg} alt="Generated Vision" className="w-full h-auto shadow-2xl" />
+              <div className="mt-8 p-4 bg-white/50 border-l-2 border-nude">
+                <p className="text-[10px] uppercase tracking-widest font-bold mb-2 font-sans">Aesthetic Logic</p>
                 <p className="text-xs text-gray-600 leading-relaxed italic font-sans">
-                  "우리는 당신의 비전을 콘크리트와 빛의 조화로 재해석했습니다. 이 구조물은 중력에 대한 최소한의 저항과 최대한의 침묵을 상징합니다."
+                  "우리는 당신의 이미지를 펄즈만의 섬세한 선과 색채로 재해석했습니다. 이는 인위적이지 않은 본연의 조화를 상징합니다."
                 </p>
               </div>
             </div>
@@ -153,7 +155,7 @@ const AIStudio: React.FC = () => {
 
           {response && !generatedImg && (
             <div className="w-full animate-in fade-in duration-700 prose prose-sm text-gray-700 max-w-none font-light leading-loose">
-              <p className="text-[10px] uppercase tracking-widest font-bold mb-6 text-dark border-b border-dark/10 pb-2 font-sans">PEARLZ ARCHITECT ADVICE</p>
+              <p className="text-[10px] uppercase tracking-widest font-bold mb-6 text-dark border-b border-dark/10 pb-2 font-sans">PEARLZ ARTIST ADVICE</p>
               <div className="whitespace-pre-wrap font-sans">{response}</div>
             </div>
           )}
