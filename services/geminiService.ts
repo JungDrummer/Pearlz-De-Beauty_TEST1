@@ -3,8 +3,7 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { AIModelType } from "../types";
 
 /**
- * Service to handle Gemini API interactions for beauty consultation.
- * Updated to reflect Pearlz De Beauty branding and expert persona.
+ * Service to handle Gemini API interactions for architectural consultation.
  */
 export const getGeminiResponse = async (
   prompt: string, 
@@ -24,24 +23,22 @@ export const getGeminiResponse = async (
     });
   }
 
-  // Use generateContent with model name and prompt/parts
   const response: GenerateContentResponse = await ai.models.generateContent({
     model: modelName,
     contents: { parts },
     config: {
-      systemInstruction: "You are the head artist at Pearlz De Beauty, a premium semi-permanent makeup and beauty studio. Your voice is elegant, professional, and reassuring. You specialize in natural beauty enhancements, microblading, and lip tinting. Use terms like 'natural stroke', 'skin harmony', 'pigment balance', and 'aesthetic precision'.",
+      systemInstruction: "You are the head architect at PEARLZ, a firm specializing in brutalist, minimal, and concrete architecture inspired by Japanese and Korean aesthetics. Your voice is professional, philosophical, and visionary. You use terms like 'frozen music', 'sculptural structure', 'void', and 'materiality'.",
     }
   });
 
-  // Extract text using the .text property (not a method) as per guidelines
+  // Extract text using the .text property (not a method)
   return response.text || "죄송합니다. 메시지를 처리하는 중에 오류가 발생했습니다.";
 };
 
 /**
- * Service to handle beauty image generation using Gemini models.
- * Renamed from generateArchitecturalImage to fix export error and match context.
+ * Service to handle architectural image generation using Gemini models.
  */
-export const generateBeautyImage = async (
+export const generateArchitecturalImage = async (
   prompt: string,
   modelName: string = AIModelType.FLASH_IMAGE,
   aspectRatio: "1:1" | "16:9" | "9:16" = "1:1"
@@ -52,7 +49,7 @@ export const generateBeautyImage = async (
   const response: GenerateContentResponse = await ai.models.generateContent({
     model: modelName,
     contents: {
-      parts: [{ text: `High-end beauty and semi-permanent makeup photography: ${prompt}. Professional lighting, sharp focus on skin texture and details, clean aesthetic, high quality, minimal studio background.` }]
+      parts: [{ text: `High-end architectural concept: ${prompt}. Brutalist concrete style, cinematic lighting, high-quality, minimal aesthetic.` }]
     },
     config: {
       imageConfig: {

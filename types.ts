@@ -3,12 +3,7 @@ import React from 'react';
 
 export type ViewState = 'home' | 'procedures' | 'training' | 'booking';
 
-export interface Message {
-  role: 'user' | 'model';
-  text: string;
-}
-
-// Added Project interface as required by ProjectStack component
+// Added Project interface for architectural project definitions
 export interface Project {
   id: string;
   title: string;
@@ -17,21 +12,16 @@ export interface Project {
   image: string;
 }
 
-export interface BeautyService {
-  id: string;
-  title: string;
-  subTitle: string;
-  description: string;
-  image: string;
-  price?: string;
-}
-
+// Added AIModelType enum to define supported Gemini models according to guidelines
 export enum AIModelType {
   FLASH = 'gemini-3-flash-preview',
-  PRO_IMAGE = 'gemini-3-pro-image-preview',
-  FLASH_IMAGE = 'gemini-2.5-flash-image'
+  FLASH_IMAGE = 'gemini-2.5-flash-image',
+  PRO_IMAGE = 'gemini-3-pro-image-preview'
 }
 
+/**
+ * Augment the global JSX namespace to support the iconify-icon custom element.
+ */
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -45,6 +35,9 @@ declare global {
   }
 }
 
+/**
+ * Support for React-specific JSX namespace augmentation.
+ */
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
