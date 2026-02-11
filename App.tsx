@@ -38,7 +38,7 @@ const App: React.FC = () => {
       {/* TOP HERO SECTION */}
       <section className="relative w-full h-[75vh] flex items-center justify-center overflow-hidden bg-dark">
         <img 
-          src="/IMG_7081.jpeg" 
+          src="/IMG_7081" 
           className="absolute inset-0 w-full h-full object-cover brightness-[0.4] scale-105" 
           alt="Main Hero Portfolio" 
         />
