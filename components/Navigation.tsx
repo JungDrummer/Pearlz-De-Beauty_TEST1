@@ -20,7 +20,9 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate, currentView }) => {
 
   const navLinks: { name: string; view: ViewState }[] = [
     { name: '시술 항목', view: 'procedures' },
-    { name: '수강 문의', view: 'training' },
+    { name: '바디 관리', view: 'body' },
+    { name: '속눈썹 시술', view: 'eyelash' },
+    { name: '펄즈아카데미', view: 'academy' },
     { name: '예약 하기', view: 'booking' },
   ];
 
@@ -32,12 +34,12 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate, currentView }) => {
         </button>
         
         {/* Desktop Links - Using font-sans for clean Inter look */}
-        <div className="hidden md:flex gap-12 text-[10px] font-semibold tracking-[0.3em] uppercase font-sans">
+        <div className="hidden lg:flex gap-8 xl:gap-12 text-[10px] font-semibold tracking-[0.3em] uppercase font-sans">
           {navLinks.map((link) => (
             <button 
               key={link.name} 
               onClick={() => handleNav(link.view)} 
-              className={`hover:text-nude transition-colors ${currentView === link.view ? 'text-nude' : ''}`}
+              className={`hover:text-nude transition-colors whitespace-nowrap ${currentView === link.view ? 'text-nude' : ''}`}
             >
               {link.name}
             </button>
@@ -47,7 +49,7 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate, currentView }) => {
         {/* Mobile Toggle Button */}
         <button 
           onClick={toggleMenu}
-          className="md:hidden flex items-center justify-center p-2 group"
+          className="lg:hidden flex items-center justify-center p-2 group"
           aria-label="Toggle Menu"
         >
           <iconify-icon 
@@ -60,16 +62,16 @@ const Navigation: React.FC<NavigationProps> = ({ onNavigate, currentView }) => {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 bg-dark z-[90] transition-transform duration-700 ease-in-out md:hidden ${
+        className={`fixed inset-0 bg-dark z-[90] transition-transform duration-700 ease-in-out lg:hidden ${
           isOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="h-full flex flex-col items-center justify-center p-8 space-y-10">
+        <div className="h-full flex flex-col items-center justify-center p-8 space-y-8">
           {navLinks.map((link, idx) => (
             <button 
               key={link.name} 
               onClick={() => handleNav(link.view)}
-              className={`text-white text-3xl font-black tracking-tighter transition-all duration-500 ${
+              className={`text-white text-2xl md:text-3xl font-black tracking-tighter transition-all duration-500 text-center ${
                 isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${idx * 100}ms` }}

@@ -60,12 +60,14 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* 3 Main Menu Cards */}
+      {/* 5 Main Menu Cards */}
       <section className="flex flex-col bg-dark overflow-hidden">
         {[
           { title: 'Procedures', label: '시술 항목', view: 'procedures' as ViewState, img: 'https://scontent-ssn1-1.cdninstagram.com/v/t51.82787-15/612470975_18088614206012670_7781569586294289730_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=MzgwODE2NDQ4OTQwMjE0MTQ0OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=GWikn22-_XsQ7kNvwF0pvgN&_nc_oc=Adl9gZxOvZRfv4Z0OGu-vOJnWA5HGGlnWD8VtYcBGsMDVPA1_ZkDS5iTcOyEzkFYljk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_gid=jw6sCwwYJhEqv44wjKAQVg&oh=00_AftoDgMKJ7i4WKYaGCEqZQhydW3pNrFQbpmrR3M0bs7i0A&oe=6991AD61' },
-          { title: 'Education', label: '수강 메뉴', view: 'training' as ViewState, img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop' },
-          { title: 'Booking', label: '예약 문의', view: 'booking' as ViewState, img: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=1000&auto=format&fit=crop' }
+          { title: 'Body Care', label: '바디 관리', view: 'body' as ViewState, img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2000&auto=format&fit=crop' },
+          { title: 'Eyelash Art', label: '속눈썹 시술', view: 'eyelash' as ViewState, img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=2000&auto=format&fit=crop' },
+          { title: 'Academy', label: '펄즈아카데미', view: 'academy' as ViewState, img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2000&auto=format&fit=crop' },
+          { title: 'Booking', label: '예약 문의', view: 'booking' as ViewState, img: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=2000&auto=format&fit=crop' }
         ].map((card) => (
           <button 
             key={card.view}
@@ -76,11 +78,6 @@ const App: React.FC = () => {
               src={card.img} 
               className="absolute inset-0 w-full h-full object-cover brightness-[0.3] group-hover:brightness-[0.45] transition-all duration-1000"
               alt={card.label}
-              onError={(e) => {
-                if (card.img === '/Images/main_1.jpeg') {
-                   (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1583001931046-648c6f194384?q=80&w=1000&auto=format&fit=crop";
-                }
-              }}
             />
             <div className="relative flex-1 flex flex-col items-center justify-center z-10 text-white p-6 text-center">
               <span className="text-[9px] tracking-[0.4em] opacity-40 mb-3 group-hover:opacity-100 transition-opacity uppercase font-bold font-sans">{card.title}</span>
@@ -169,7 +166,77 @@ const App: React.FC = () => {
     </section>
   );
 
-  const TrainingView = () => {
+  const BodyCareView = () => (
+    <section className="bg-dark text-white min-h-screen pt-32 pb-40">
+      <div className="max-w-[1400px] mx-auto px-6">
+        <div className="mb-24 reveal text-center md:text-left">
+          <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">Body Wellness</span>
+          <h2 className="text-4xl md:text-7xl font-bold font-sans uppercase tracking-tighter leading-none mb-10">
+            바디 <span className="text-white/20">관리</span>
+          </h2>
+          <div className="h-px w-24 bg-nude opacity-30 mx-auto md:mx-0"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+          {[
+            { title: 'Signature Body', sub: '전신 순환 관리', description: '림프 순환을 돕고 부종을 완화하여 몸의 균형을 되찾아주는 프리미엄 케어', img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1000' },
+            { title: 'Back & Shoulder', sub: '등/어깨 집중 케어', description: '현대인의 고질적인 피로인 굽은 어깨와 뭉친 근육을 깊숙이 이완', img: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=1000' },
+            { title: 'Waist Line', sub: '복부 / 웨이스트', description: '독소 배출과 인치 감소를 돕는 집중 쉐이핑 트리트먼트', img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1000' }
+          ].map((item, idx) => (
+            <div key={idx} className="reveal group cursor-pointer">
+              <div className="aspect-[3/4] overflow-hidden mb-8 border border-white/5 relative bg-black/20">
+                <img src={item.img} className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt={item.title} />
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between items-end">
+                  <h4 className="text-xl font-bold tracking-tight font-sans uppercase">{item.title}</h4>
+                  <span className="text-nude text-[9px] font-bold tracking-widest uppercase mb-1">{item.sub}</span>
+                </div>
+                <p className="text-white/40 text-[13px] font-light leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const EyelashView = () => (
+    <section className="bg-dark text-white min-h-screen pt-32 pb-40">
+      <div className="max-w-[1400px] mx-auto px-6">
+        <div className="mb-24 reveal text-center md:text-left">
+          <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">Eye Esthetic</span>
+          <h2 className="text-4xl md:text-7xl font-bold font-sans uppercase tracking-tighter leading-none mb-10">
+            속눈썹 <span className="text-white/20">시술</span>
+          </h2>
+          <div className="h-px w-24 bg-nude opacity-30 mx-auto md:mx-0"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+          {[
+            { title: 'Lash Lift', sub: '속눈썹 펌', description: '뷰러를 한 듯 자연스럽고 또렷한 컬링으로 생기 있는 눈매 연출', img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000' },
+            { title: 'Classic Extension', sub: '클래식 연장', description: '본인의 속눈썹처럼 자연스럽고 이물감 없는 1:1 기법', img: 'https://images.unsplash.com/photo-1522337360733-412a652854fc?q=80&w=1000' },
+            { title: 'Design Volume', sub: '디자인 볼륨', description: '눈매에 맞춘 풍성하고 입체적인 디자인으로 화려한 변화', img: 'https://images.unsplash.com/photo-1583001931046-648c6f194384?q=80&w=1000' }
+          ].map((item, idx) => (
+            <div key={idx} className="reveal group cursor-pointer">
+              <div className="aspect-[3/4] overflow-hidden mb-8 border border-white/5 relative bg-black/20">
+                <img src={item.img} className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt={item.title} />
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between items-end">
+                  <h4 className="text-xl font-bold tracking-tight font-sans uppercase">{item.title}</h4>
+                  <span className="text-nude text-[9px] font-bold tracking-widest uppercase mb-1">{item.sub}</span>
+                </div>
+                <p className="text-white/40 text-[13px] font-light leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
+  const AcademyView = () => {
     const videoUrl = "https://scontent-icn2-1.cdninstagram.com/o1/v/t16/f2/m69/AQN2V52nFFOa8cIUMsg32ZMBTYesK4Ok209dU31c3BLwKSkeKXv45BCkS_f-alHn1uN_AdnC39WN4uw_LVr9FS8Z.mp4?strext=1&_nc_cat=109&_nc_sid=5e9851&_nc_ht=scontent-icn2-1.cdninstagram.com&_nc_ohc=NdvQ75eF_sUQ7kNvwEgs_kc&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MTc5NDU3OTU1MzUxMDE4NjAsImFzc2V0X2FnZV9kYXlzIjoxLCJ2aV91c2VjYXNlX2lkIjoxMDA5OSwiZHVyYXRpb25fcyI6MTAsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&_nc_gid=JAGJwQnr5tOWECdC5pyabQ&_nc_zt=28&vs=68e03c4afd126a16&_nc_vs=HBksFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HSVBLaUNYUHd1Mk4xTEFGQUFFUHdLMWhoSkZ3YnNwVEFRQUYVAALIARIAFQIYUWlnX3hwdl9wbGFjZW1lbnRfcGVybWFuZW50X3YyL0JFNDMxNDZDMTM0NDEzQUQyQzc0RDMxNjRCRDhFRDg0X2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACbI_qaB5ObgPxUCKAJDMywXQCUhysCDEm8YEmRhc2hfYmFzZWxpbmVfMV92MREAdf4HZeadAQA&oh=00_AfuUA1jig5aX4AogX6mO8UnEKSJ5OaPwcEN_f6tvpmioqw&oe=69926D5F";
     
     return (
@@ -179,7 +246,7 @@ const App: React.FC = () => {
             <div>
               <span className="text-nude text-[10px] tracking-[0.6em] font-bold uppercase block mb-4 font-sans">Elite Education</span>
               <h2 className="text-4xl md:text-7xl font-bold font-sans uppercase tracking-tighter leading-none mb-10">
-                수강 <span className="text-dark/10">메뉴</span>
+                펄즈 <span className="text-dark/10">아카데미</span>
               </h2>
               <p className="text-lg md:text-xl font-light text-dark/60 leading-relaxed max-w-lg">
                 기초부터 창업까지, 펄즈만의 차별화된 테크닉과 경영 노하우를 아낌없이 전수합니다.
@@ -255,7 +322,9 @@ const App: React.FC = () => {
       <main>
         {currentView === 'home' && <HomeView />}
         {currentView === 'procedures' && <ProceduresView />}
-        {currentView === 'training' && <TrainingView />}
+        {currentView === 'body' && <BodyCareView />}
+        {currentView === 'eyelash' && <EyelashView />}
+        {currentView === 'academy' && <AcademyView />}
         {currentView === 'booking' && (
           <section className="bg-white min-h-[90vh] flex items-center justify-center pt-32 pb-40 px-6">
             <div className="max-w-3xl mx-auto text-center reveal">

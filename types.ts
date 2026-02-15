@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type ViewState = 'home' | 'procedures' | 'training' | 'booking';
+export type ViewState = 'home' | 'procedures' | 'body' | 'eyelash' | 'academy' | 'booking';
 
 // Added Project interface for architectural project definitions
 export interface Project {
