@@ -36,9 +36,8 @@ const App: React.FC = () => {
       {/* MAIN HERO SECTION */}
       <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-dark">
         <img 
-          src="https://scontent-ssn1-1.cdninstagram.com/v/t51.82787-15/546572300_18076272914012670_7642178288577633727_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ig_cache_key=MzcyMTQwNDk4NjA3MDA0NjY2MA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=LQrOoIEqfi0Q7kNvwFemyyW&_nc_oc=AdkKCE-n3qSuHG0v8L1hcwFi9T6Q7G_8H8AummTfXpevEQ628NF1FAniWrVtKHycRgo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_gid=rr8M6NYyip0c2ciQn7BiBg&oh=00_AfsDnF_wEtI9YJIp6RyDUZihg0JCHXCJtwB-OR2lk8DooQ&oe=6991C69B" 
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.45] scale-100" 
-          alt="Main Background" 
+          src="/images/pearlz_main.jpeg" 
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.45] scale-100"  
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1522337360733-412a652854fc?q=80&w=2000&auto=format&fit=crop";
           }}
